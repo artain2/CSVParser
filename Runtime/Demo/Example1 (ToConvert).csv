@@ -1,0 +1,9 @@
+"##Header{Mapping:2,3|Groups:4|Columns:5|Start:6}!##",,,,
+key,,speed,isPredator,colors
+id,name,,,
+Key,,Props,,
+ID,Name,Speed,IsPredator,Colors
+1,Cat,2,FALSE,"[1,2,3]"
+2,Dog,2,FALSE,"[2,3,4]"
+3,Turtle,0.2,FALSE,5
+4,Tiger,3,TRUE,4
