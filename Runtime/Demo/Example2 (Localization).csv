@@ -1,4 +1,3 @@
-Block:Demo|Version:1,,,,,,
 Key,EN,RU,FR,DE,ES,IT
 item/Tree1,Seeds,Семена,Graines,Samen,Semillas,Semi
 item/Tree2,Small sprout,Росток,Petite pousse,Kleiner Spross,Brote pequeño,Piccolo germoglio
@@ -2360,8 +2359,8 @@ level,Level,Уровень,Niveau,Level,Nivel,Livello
 start/connecting,Connecting to server,Подключаемся к серверу,Connexion au serveur,Verbindung zum Server wird hergestellt,Conectando al servidor,Connessione al server
 inapp/timeleft,Offer expires in:,Действие предложения истекает,L’offre expire dans :,Angebot läuft ab in:,La oferta caduca en:,L'offerta scade tra:
 inapp/sale,SALE,ПРОДАЖА,VENTE,ANGEBOT,OFERTA,SCONTO
-retry,Retry,Повторить,Ressayer,Erneut versuchen,Reintentar,Riprova
 not_enough_event,Not enough event points!,Недостаточно очков события,,,,
 collection/source,How to get,Как получить,,,,
 cancel,Cancel,Закрыть,,,,
 button/complete,Complete,Выполнить,,,,
+retry,Retry,Повторить,Ressayer,Erneut versuchen,Reintentar,Riprova

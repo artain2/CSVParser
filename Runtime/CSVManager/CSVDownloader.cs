@@ -25,7 +25,6 @@ namespace CSVParser
     /// </summary>
     public static class CSVDownloader
     {
-        #region Main
 
         /// <summary>
         /// Создает кастомный процесс загрузки с ручной настройкой
@@ -117,12 +116,9 @@ namespace CSVParser
             }
         }
 
-        #endregion
-
-        #region Overrides
 
         public static CSVDownloadProcess DownloadProcess(string key) => DownloadProcess(Misc.GetInfoByKey(key));
-        public static void DownloadCSV(string key, Action<CSVDownloadResult> completeCallback, Action<int> progressCallback = null) => DownloadCSV(Misc.GetInfoByKey(key),  completeCallback, progressCallback);
+        public static void DownloadCSV(string key, Action<CSVDownloadResult> completeCallback, Action<int> progressCallback = null) => DownloadCSV(Misc.GetInfoByKey(key), completeCallback, progressCallback);
         public static void DownloadCSV(string key, Action<bool, string> completeCallback, Action<int> progressCallback = null) => DownloadCSV(Misc.GetInfoByKey(key), completeCallback, progressCallback);
         public static void UpdateAsset(string key, Action<int> progressCallback = null, Action atComplete = null) => UpdateAsset(Misc.GetInfoByKey(key), progressCallback, atComplete);
         public static void UpdateStorage(string key, Action<int> progressCallback = null, Action atComplete = null) => UpdateStorage(Misc.GetInfoByKey(key), progressCallback, atComplete);
@@ -130,11 +126,9 @@ namespace CSVParser
         public static void UpdateAllStorages(List<string> keys, Action atComplete = null) => UpdateAllStorages(keys.Select(x => Misc.GetInfoByKey(x)).ToList(), atComplete);
         public static void UpdateAllAssets(Action atComplete = null) => UpdateAllAssets(Misc.GetCSVConfig().Items, atComplete);
 
-        #endregion
 
         public static class Misc
         {
-            #region Misc
 
             static CSVConfig cachedConfig;
 
@@ -153,7 +147,7 @@ namespace CSVParser
                 return cachedConfig;
             }
 
-            public static string ClassKey { get; private set; } = $"[{nameof(CSVDownloader)}]: ".Color(Color.red);
+            public static string ClassKey { get; private set; } = $"[{nameof(CSVDownloader)}]: ";
 
             public static void StartCrt(IEnumerator crt, MonoBehaviour host = null)
             {
@@ -164,15 +158,9 @@ namespace CSVParser
                     return;
                 }
 #endif
-                if (host == null)
-                {
-                    CoroutineProvider.DoCoroutine(crt);
-                    return;
-                }
                 host.StartCoroutine(crt);
             }
 
-            #endregion
         }
 
     }
@@ -232,13 +220,13 @@ namespace CSVParser
                 return false;
             }
 #endif
-            if (Info.Key.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(Info.Key))
             {
                 Debug.LogError($"{CSVDownloader.Misc.ClassKey} Пустой ключ", CSVConfig.LoadInstance());
                 return false;
             }
 
-            if (Info.DowloadUrl.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(Info.DowloadUrl))
             {
                 Debug.LogError($"{CSVDownloader.Misc.ClassKey} Не указана ссылка в [{Info.Key}]", CSVConfig.LoadInstance());
                 return false;

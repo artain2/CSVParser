@@ -1,7 +1,11 @@
-Main,,,Props,,
-ID,Name,Description,Speed,Color,Size
-1,Cat,"Small, fuzzy, cute",2,1,1
-2,Dog,"GOOD
-BOY",2,2,2
-3,Turtle,Dumb,0.2,3,1
-4,Tiger,"Has an ""eye of a tiger""",3,4,5
+ID,Name,Value
+1,Simple cell,simple
+2,Cell with comma,"one, two"
+3,Cell with new line,"New
+Line"
+4,Cell with quotes,"its ""fine"""
+5,Spicy cell,"one is ""one""
+, two is ""two""
+,"
+6,Last cell in row empty,
+7,Last cell in table empty,

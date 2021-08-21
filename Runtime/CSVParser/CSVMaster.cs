@@ -34,7 +34,7 @@ namespace CSVParser
             for (int i = 0; i < container.RowsCount; i++)
             {
                 var strKey = container.GetValue(keyCol, i);
-                if (strKey.IsNullOrEmpty())
+                if (string.IsNullOrEmpty(strKey))
                     continue;
 
                 if (localizationDict.ContainsKey(strKey))
