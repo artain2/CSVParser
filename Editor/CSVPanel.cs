@@ -3,11 +3,12 @@ using UnityEngine;
 using CSVParser;
 using System;
 using System.Linq;
+using UnityEditor;
 
 #if JARVIS
-using UnityEditor.DrawerTools;
+using DrawerTools;
 
-namespace UnityEditor.Jarvis
+namespace Jarvis
 {
     public class CSVPanel : JarvisPanel
     {
@@ -15,7 +16,7 @@ namespace UnityEditor.Jarvis
 
         public override IconType PanelIcon => IconType.Web;
 
-        public override string Tooltip => "CSV таблицы";
+        //public override string Tooltip => "CSV таблицы";
 
         //public override int Order => 5;
         //public override bool IsVisible => true;
