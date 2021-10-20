@@ -86,15 +86,13 @@ namespace CSVParser
 
 #if ODIN_INSPECTOR
         [Button]
-        private void Download() => Download(null, null);
-
-        public void Download(string path, Action<int> downloadProgress)
+        private void Download() 
         {
 
 #if UNITY_EDITOR
-            EditorCoroutineUtility.StartCoroutineOwnerless(CSVDownloader.UpdateData(this, path, progressCallback: downloadProgress));
+            CSVDownloader.UpdateAsset(this);
 #else
-            CoroutineProvider.DoCoroutine(GoogleDocsCSVDownloader.UpdateData(this, path, progressCallback: downloadProgress));
+           CSVDownloader.UpdateStorage(this);
 #endif
         }
 #endif
