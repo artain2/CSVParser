@@ -14,13 +14,6 @@ namespace Jarvis
     {
         #region Fields
 
-        public override IconType PanelIcon => IconType.Web;
-
-        //public override string Tooltip => "CSV таблицы";
-
-        //public override int Order => 5;
-        //public override bool IsVisible => true;
-
         private List<FileDownload> lines;
         private CSVConfig csvConfig;
         private Editor csvConfigEditor;
