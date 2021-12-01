@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using CSVParser;
-using System;
 using System.Linq;
+using UnityEngine;
 using UnityEditor;
+
+using CSVParser;
 
 #if JARVIS
 using DrawerTools;
@@ -22,10 +22,9 @@ namespace Jarvis
         private DTButton selectConfig;
         private DTButton downloadAll;
 
-
         public static readonly string[] TabTypes = new string[] { "Main", "Config" };
 
-        #endregion
+        #endregion Fields
 
         #region DT
 
@@ -46,6 +45,12 @@ namespace Jarvis
             // Основная
             if (tabs.Value == 0)
             {
+                if (lines == null || lines.Count == 0)
+                {
+                    DT.Label("Нет конфигов");
+                    return;
+                }
+
                 foreach (var item in lines)
                 {
                     item.Draw();
@@ -63,19 +68,19 @@ namespace Jarvis
             }
         }
 
-        #endregion
+        #endregion DT
 
         #region Misc
 
-        void Reload()
+        private void Reload()
         {
             // var configs = FindConfigs();
             // if (configs.Length > 0)
-                // csvConfig = configs[0];
-			
-			csvConfig=CSVConfig.LoadInstance();
+            // csvConfig = configs[0];
 
-		if (csvConfig)
+            csvConfig = CSVConfig.LoadInstance();
+
+            if (csvConfig)
             {
                 csvConfigEditor = Editor.CreateEditor(csvConfig);
                 lines = csvConfig.Items.Select(x => new FileDownload(x)).OrderBy(x => x.AssetName).ToList();
@@ -93,7 +98,7 @@ namespace Jarvis
             return result.ToArray();
         }
 
-        #endregion
+        #endregion Misc
 
         private class FileDownload : DTDrawable
         {
@@ -109,7 +114,7 @@ namespace Jarvis
             private DTButton buttonDownload;
             private DTButton buttonSelectFile;
 
-            #endregion
+            #endregion Fields
 
             #region DT
 
@@ -122,12 +127,10 @@ namespace Jarvis
                 buttonUrl = new DTButton("URL", OpenUrl).SetWidth(40f) as DTButton;
                 buttonDownload = new DTButton("Download", UpdateAsset).SetWidth(120f) as DTButton;
 
-
                 void AtSelectFile()
                 {
                     DT.ShowAsset(info.Asset);
                 }
-
 
                 void OpenUrl()
                 {
@@ -145,7 +148,7 @@ namespace Jarvis
                 DTScope.DrawHorizontal(labelName, buttonSelectFile, buttonUrl, buttonDownload);
             }
 
-            #endregion
+            #endregion DT
 
             #region Main
 
@@ -171,7 +174,7 @@ namespace Jarvis
                 }
             }
 
-            #endregion 
+            #endregion Main
         }
     }
 

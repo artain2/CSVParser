@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
 using Unity.EditorCoroutines.Editor;
-#endif
-
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
 #endif
 
 namespace CSVParser
@@ -89,7 +85,9 @@ namespace CSVParser
         {
             Debug.Log($"{Misc.ClassKey} Начата загрузка", CSVConfig.LoadInstance());
             foreach (var info in infoList)
+            {
                 new CSVDownloadProcess(info).Download(AtComplete);
+            }
             Debug.Log($"{Misc.ClassKey} Загрузка завершена", CSVConfig.LoadInstance());
 
             void AtComplete(CSVDownloadResult result)
@@ -106,7 +104,9 @@ namespace CSVParser
         {
             Debug.Log($"{Misc.ClassKey} Начата загрузка", CSVConfig.LoadInstance());
             foreach (var info in infoList)
+            {
                 new CSVDownloadProcess(info).Download(AtComplete);
+            }
             Debug.Log($"{Misc.ClassKey} Загрузка завершена", CSVConfig.LoadInstance());
 
             void AtComplete(CSVDownloadResult result)
@@ -136,14 +136,18 @@ namespace CSVParser
             {
                 var info = GetCSVConfig().GetItem(key);
                 if (info == null)
+                {
                     Debug.LogError($"No key [{key}] in CSVConfig", cachedConfig);
+                }
                 return info;
             }
 
             public static CSVConfig GetCSVConfig()
             {
                 if (cachedConfig == null)
+                {
                     cachedConfig = CSVConfig.LoadInstance();
+                }
                 return cachedConfig;
             }
 
@@ -160,9 +164,7 @@ namespace CSVParser
 #endif
                 host.StartCoroutine(crt);
             }
-
         }
-
     }
 
     /// <summary>
@@ -181,7 +183,7 @@ namespace CSVParser
         Action<int> progressCallback = null;
         Action<CSVDownloadResult> completeCallback = null;
 
-        #endregion
+        #endregion Fields
 
         #region Init
 
@@ -196,7 +198,7 @@ namespace CSVParser
             return this;
         }
 
-        #endregion
+        #endregion Init
 
         #region Main
 
@@ -211,7 +213,7 @@ namespace CSVParser
             CSVDownloader.Misc.StartCrt(CRT_Download(), host);
         }
 
-        bool CheckSource()
+        private bool CheckSource()
         {
 #if UNITY_EDITOR
             if (Info.Asset == null)
@@ -274,8 +276,7 @@ namespace CSVParser
                 completeCallback(result);
         }
 
-
-        #endregion 
+        #endregion Main
     }
 
     /// <summary>

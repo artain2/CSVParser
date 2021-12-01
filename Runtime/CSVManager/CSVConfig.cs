@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using System.Collections;
 
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-#endif
-
-#if UNITY_EDITOR
-using Unity.EditorCoroutines.Editor;
 #endif
 
 namespace CSVParser
@@ -19,11 +14,15 @@ namespace CSVParser
     {
         #region Fields
 
+        [SerializeField] private string tableUrl;
+        [SerializeField] private string configDownloadUrl;
         [SerializeField] private List<CSVDownloadInfo> items;
 
+        public string TableUrl => tableUrl;
+        public string ConfigDownloadUrl => configDownloadUrl;
         public List<CSVDownloadInfo> Items => items;
 
-        #endregion
+        #endregion Fields
 
         #region Main
 
@@ -42,8 +41,7 @@ namespace CSVParser
             CSVDownloader.UpdateAllAssets(items);
         }
 
-
-        #endregion
+        #endregion Main
 
     }
 
@@ -53,12 +51,12 @@ namespace CSVParser
 
         #region Fields
 
-        [SerializeField] string key;
-        [SerializeField] string dowloadUrl;
-        [SerializeField] string storagePath;
+        [SerializeField] private string key;
+        [SerializeField] private string dowloadUrl;
+        [SerializeField] private string storagePath;
 #if UNITY_EDITOR
-        [SerializeField] TextAsset asset;
-        [SerializeField] string originalUrl;
+        [SerializeField] private TextAsset asset;
+        [SerializeField] private string originalUrl;
 
         public TextAsset Asset => asset;
         public string OriginalUrl => originalUrl;
@@ -80,7 +78,7 @@ namespace CSVParser
             this.storagePath = storagePath;
         }
 
-        #endregion
+        #endregion Fields
 
         #region Odin
 
@@ -92,10 +90,10 @@ namespace CSVParser
 #if UNITY_EDITOR
             CSVDownloader.UpdateAsset(this);
 #else
-           CSVDownloader.UpdateStorage(this);
+            CSVDownloader.UpdateStorage(this);
 #endif
         }
 #endif
-        #endregion
+        #endregion Odin
     }
 }
